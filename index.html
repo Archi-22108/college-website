@@ -1,0 +1,345 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" 
+/> 
+  <title>My College Website</title> 
+  <style> 
+    /* ============ CSS STYLING ============ */ 
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: "Poppins", Arial, sans-serif; 
+      scroll-behavior: smooth; 
+    } 
+ 
+    body { 
+      background: #f4f6fc; 
+      color: #222; 
+    } 
+ 
+    /* Navbar */ 
+    header { 
+      background: #003366; 
+      color: white; 
+      padding: 10px 20px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 1000; 
+    } 
+ 
+    .navbar {display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap; 
+    } 
+ 
+    .logo { 
+      font-size: 1.8em; 
+      font-weight: 700; 
+      letter-spacing: 1px; 
+    } 
+ 
+    .nav-links { 
+      list-style: none; 
+      display: flex; 
+      gap: 25px; 
+    } 
+ 
+    .nav-links a { 
+      color: white; 
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: 0.3s; 
+    } 
+ 
+    .nav-links a:hover, 
+    .nav-links a.active { 
+      color: #ffcc00; 
+    } 
+ 
+    /* Section general style */ 
+    section { 
+      display: none; 
+      padding: 60px 20px; 
+      max-width: 1000px; 
+      margin: 40px auto; 
+      background: white; 
+      border-radius: 10px;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+      animation: fadeIn 0.6s ease; 
+    } 
+ 
+    section.active { 
+      display: block; 
+    } 
+ 
+    @keyframes fadeIn { 
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      } 
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      } 
+    } 
+ 
+    /* Hero Section */ 
+    .hero { 
+      background: linear-gradient(to right, #003366, #0059b3); 
+      color: white; 
+      text-align: center; 
+      padding: 100px 20px; 
+      border-radius: 10px; 
+    } 
+ 
+    .hero h1 { 
+      font-size: 2.8em; 
+      margin-bottom: 10px; 
+    } 
+ 
+    .hero p { 
+      font-size: 1.2em; 
+      margin-bottom: 20px; 
+    }
+     .btn { 
+      background: #ffcc00; 
+      color: #003366; 
+      padding: 10px 20px; 
+      border-radius: 5px; 
+      text-decoration: none; 
+      transition: 0.3s; 
+      font-weight: bold; 
+    } 
+ 
+    .btn:hover { 
+      background: #ffd633; 
+    } 
+ 
+    /* Courses Grid */ 
+    .courses { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 20px; 
+      margin-top: 30px; 
+    } 
+ 
+    .course-card { 
+      background: #eaf0ff; 
+      padding: 20px; 
+      border-radius: 10px; 
+      text-align: center; 
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
+      transition: transform 0.3s; 
+    } 
+ 
+    .course-card:hover { 
+      transform: translateY(-5px); 
+    } 
+ 
+    /* Gallery */ 
+    .gallery { 
+      display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+      gap: 15px; 
+      margin-top: 20px; 
+    } 
+ 
+    .gallery img { 
+      width: 100%; 
+      border-radius: 10px; 
+      height: 180px; 
+      object-fit: cover; 
+      transition: transform 0.4s; 
+    } 
+ 
+    .gallery img:hover { 
+      transform: scale(1.05); 
+    } 
+ 
+    /* Contact Form */ 
+    form { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 15px; 
+      text-align: left; 
+      max-width: 500px; 
+      margin: auto; 
+    } 
+ 
+    input, textarea { 
+      padding: 10px; 
+      border: 1px solid #ccc; 
+      border-radius: 5px; 
+      width: 100%; 
+    } 
+ 
+    button { 
+      background: #003366; 
+      color: white; 
+      border: none; 
+      padding: 10px; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    } 
+ 
+    button:hover { 
+      background: #0059b3; 
+    } 
+ 
+    /* Footer */ 
+    footer { 
+      background: #003366; 
+      color: white; 
+      text-align: center; 
+      padding: 20px 0; 
+      margin-top: 40px; 
+    } 
+ 
+    @media (max-width: 700px) { 
+      .nav-links { 
+        flex-direction: column; 
+        align-items: center; 
+      } 
+    } 
+  </style> 
+</head> 
+<body> 
+  <!-- ============ HTML CONTENT ============ --> 
+  <header> 
+    <nav class="navbar"> 
+      <div class="logo">My College</div> 
+      <ul class="nav-links"> 
+        <li><a href="#" class="active" 
+onclick="showSection('home')">Home</a></li> 
+        <li><a href="#" onclick="showSection('about')">About</a></li> 
+        <li><a href="#" onclick="showSection('courses')">Courses</a></li> 
+        <li><a href="#" onclick="showSection('gallery')">Gallery</a></li> 
+        <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+         </ul> 
+    </nav> 
+  </header> 
+ 
+  <!-- Home Section --> 
+  <section id="home" class="active"> 
+    <div class="hero"> 
+      <h1>Welcome to My College</h1> 
+      <p>Empowering Students for a Brighter Future Since 1995</p> 
+      <a href="#" class="btn" onclick="showSection('about')">Explore 
+More</a> 
+    </div> 
+    <h2 style="margin-top:40px;">Why Choose Us?</h2> 
+    <p>We provide excellent academic programs, modern campus facilities, 
+and a supportive learning environment to help students thrive in their 
+careers.</p> 
+  </section> 
+ 
+  <!-- About Section --> 
+  <section id="about"> 
+    <h1>About Our College</h1> 
+    <p>My College has been recognized as one of the leading educational 
+institutions for innovation and academic excellence. With dedicated faculty 
+and a strong alumni network, we strive to shape future leaders.</p> 
+    <p>We offer courses in Engineering, Commerce, Science, and Arts, all 
+designed to empower young minds with practical skills and global 
+exposure.</p> 
+  </section> 
+ 
+  <!-- Courses Section --> 
+  <section id="courses"> 
+    <h1>Our Popular Courses</h1> 
+    <div class="courses"> 
+      <div class="course-card"> 
+        <h3>B.Tech in Computer Science</h3> 
+        <p>Learn programming, AI, and modern technologies from expert 
+faculty.</p> 
+      </div>
+      <div class="course-card"> 
+        <h3>B.Com</h3> 
+        <p>Gain strong foundations in finance, accounting, and business 
+management.</p> 
+      </div> 
+      <div class="course-card"> 
+        <h3>B.Sc in Physics</h3> 
+        <p>Explore the wonders of science with hands-on lab 
+experiences.</p> 
+      </div> 
+      <div class="course-card"> 
+        <h3>BA in English</h3> 
+        <p>Enhance your language, communication, and creative writing 
+skills.</p> 
+      </div> 
+    </div> 
+  </section> 
+ 
+  <!-- Gallery Section --> 
+  <section id="gallery"> 
+    <h1>Campus Gallery</h1> 
+    <div class="gallery"> 
+      <img src="Screenshot 2025-11-11 175945.png" alt="Campus 1"> 
+      <img src="Screenshot 2025-09-18 123358.png" alt="Campus 2"> 
+      <img src="Screenshot 2025-11-11 180645.png" alt="Library"> 
+      <img src="Screenshot 2025-11-11 175819.png" alt="Sports"> 
+      <img src="Screenshot 2025-09-18 123604.png" alt="Graduation"> 
+    </div> 
+  </section> 
+ 
+  <!-- Contact Section --> 
+  <section id="contact"> 
+    <h1>Contact Us</h1> 
+    <form id="contactForm"> 
+      <label for="name">Name:</label> 
+      <input type="text" id="name" placeholder="Enter your name" 
+required>
+<label for="email">Email:</label> 
+      <input type="email" id="email" placeholder="Enter your email" 
+required> 
+ 
+      <label for="message">Message:</label> 
+      <textarea id="message" rows="5" placeholder="Type your message 
+here..." required></textarea> 
+ 
+      <button type="submit">Send Message</button> 
+    </form> 
+  </section> 
+ 
+  <footer> 
+    <p>&copy; 2025 My College. All Rights Reserved.</p> 
+  </footer> 
+ 
+  <!-- ============ JAVASCRIPT ============ --> 
+  <script> 
+    function showSection(sectionId) { 
+      document.querySelectorAll("section").forEach(sec => 
+sec.classList.remove("active")); 
+      document.getElementById(sectionId).classList.add("active"); 
+ 
+      document.querySelectorAll(".nav-links a").forEach(link => 
+link.classList.remove("active")); 
+      event.target.classList.add("active"); 
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
+    } 
+ 
+    // Contact form validation 
+    document.addEventListener("DOMContentLoaded", function () { 
+      const form = document.getElementById("contactForm"); 
+      form.addEventListener("submit", function (e) { 
+        e.preventDefault(); 
+        const name = document.getElementById("name").value.trim(); 
+        const email = document.getElementById("email").value.trim(); 
+        const message = document.getElementById("message").value.trim();
+    if (name && email && message) { 
+        alert("Thank you, " + name + "! Your message has been submitted successfully."); 
+        form.reset(); 
+    } else { 
+        alert("Please fill all fields before submitting."); 
+        } 
+    }); 
+});
+</script> 
+</body> 
+</html>    
+        
